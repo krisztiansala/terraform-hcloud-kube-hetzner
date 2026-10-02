@@ -197,6 +197,7 @@ locals {
     for k, v in module.agents : k => coalesce(
       lookup(var.node_connection_overrides, v.name, null),
       lookup(var.node_connection_overrides, local.agent_override_base_names[k], null),
+      var.ssh_use_private_network ? v.private_ipv4_address : null,
       v.ipv4_address,
       v.ipv6_address,
       v.private_ipv4_address
@@ -208,6 +209,7 @@ locals {
       lookup(var.node_connection_overrides, v.name, null),
       lookup(var.node_connection_overrides, local.agent_override_base_names[k], null),
       local.tailscale_use_tailnet_for_terraform ? local.tailscale_agent_magicdns_hosts[k] : null,
+      var.ssh_use_private_network ? v.private_ipv4_address : null,
       v.ipv4_address,
       v.ipv6_address,
       v.private_ipv4_address
