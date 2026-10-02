@@ -43,6 +43,7 @@ module "control_planes" {
   append_random_suffix          = each.value.append_random_suffix
   connection_host               = ""
   connection_host_suffix        = local.tailscale_pre_terraform_ssh_enabled ? local.tailscale_magicdns_domain : ""
+  ssh_use_private_network       = var.ssh_use_private_network
   os_snapshot_id                = try(trimspace(each.value.os_snapshot_id), "") != "" ? trimspace(each.value.os_snapshot_id) : local.snapshot_id_by_os[each.value.os][substr(each.value.server_type, 0, 3) == "cax" ? "arm" : "x86"]
   os                            = each.value.os
   base_domain                   = var.base_domain
