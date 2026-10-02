@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### New Features
+
+- Backport for 2.19.x: `ssh_use_private_network` routes Terraform SSH/provisioning connections over node private IPs (for runners that reach the Hetzner private network, e.g. in-cluster Atlantis). Default off; no resource recreation.
+
 ### 📋 v2.19.1 Patch Release
 
 This is a patch release for v2.19.0. **If upgrading from v2.18.x**, please review the full release notes below including upgrade notes, new features, and breaking changes.

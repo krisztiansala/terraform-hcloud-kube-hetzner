@@ -81,12 +81,14 @@ locals {
 
   agent_ips = {
     for k, v in module.agents : k => coalesce(
+      var.ssh_use_private_network ? v.private_ipv4_address : null,
       v.ipv4_address,
       v.ipv6_address,
       v.private_ipv4_address
     )
   }
 }
+
 
 resource "terraform_data" "agent_config" {
   for_each = local.agent_nodes

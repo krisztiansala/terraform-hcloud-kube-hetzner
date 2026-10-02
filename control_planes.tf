@@ -108,6 +108,7 @@ locals {
 
   control_plane_ips = {
     for k, v in module.control_planes : k => coalesce(
+      var.ssh_use_private_network ? v.private_ipv4_address : null,
       v.ipv4_address,
       v.ipv6_address,
       v.private_ipv4_address
