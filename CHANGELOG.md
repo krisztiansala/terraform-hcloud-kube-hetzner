@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### New Features
+
+- Backport for 2.20.x: `ssh_use_private_network` routes Terraform SSH/provisioning connections over node private IPs. Default off; no resource recreation.
+
+
 ### ⚠️ Upgrade Notes
 
 - **Cluster Autoscaler Config File** - Autoscaler nodepools now mount the generated Hetzner cluster config through a Secret-backed file to avoid Kubernetes annotation size failures on large configurations. If `autoscaler_nodepools` is enabled and you override `cluster_autoscaler_version`, use `v1.33.0` or newer. The module default remains compatible.
