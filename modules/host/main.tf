@@ -59,7 +59,7 @@ resource "hcloud_server" "server" {
     user           = "root"
     private_key    = var.ssh_private_key
     agent_identity = local.ssh_agent_identity
-    host           = coalesce(self.ipv4_address, self.ipv6_address, try(one(self.network).ip, null))
+    host           = coalesce(var.ssh_use_private_network ? try(one(self.network).ip, null) : null, self.ipv4_address, self.ipv6_address, try(one(self.network).ip, null))
     port           = var.ssh_port
 
     bastion_host        = var.ssh_bastion.bastion_host

@@ -36,6 +36,7 @@ module "control_planes" {
   disable_ipv4                     = each.value.disable_ipv4
   disable_ipv6                     = each.value.disable_ipv6
   ssh_bastion                      = local.ssh_bastion
+  ssh_use_private_network          = var.ssh_use_private_network
   network_id                       = data.hcloud_network.k3s.id
 
   # We leave some room so 100 eventual Hetzner LBs that can be created perfectly safely
