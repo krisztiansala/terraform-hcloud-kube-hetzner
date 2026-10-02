@@ -36,6 +36,7 @@ module "agents" {
   disable_ipv4                     = each.value.disable_ipv4
   disable_ipv6                     = each.value.disable_ipv6
   ssh_bastion                      = local.ssh_bastion
+  ssh_use_private_network          = var.ssh_use_private_network
   network_id                       = data.hcloud_network.k3s.id
   private_ipv4                     = cidrhost(hcloud_network_subnet.agent[[for i, v in var.agent_nodepools : i if v.name == each.value.nodepool_name][0]].ip_range, each.value.index + (local.network_size >= 16 ? 101 : floor(pow(local.subnet_size, 2) * 0.4)))
 

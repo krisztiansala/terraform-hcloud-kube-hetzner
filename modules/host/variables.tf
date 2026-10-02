@@ -197,3 +197,9 @@ variable "network_gw_ipv4" {
   type        = string
   description = "Default IPv4 gateway address for the node's primary network interface"
 }
+
+variable "ssh_use_private_network" {
+  description = "Whether Terraform provisioners should prefer the server's private network IP for SSH connections."
+  type        = bool
+  default     = false
+}
